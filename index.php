@@ -2,6 +2,7 @@
 ini_set('display_errors', true);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+echo phpversion();
 
 require_once('util.php');
 
