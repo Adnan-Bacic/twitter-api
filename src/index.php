@@ -1,23 +1,13 @@
 ﻿<?php
-ini_set('display_errors', true);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-echo phpversion();
-
-require_once('util.php');
-
-/*
-errors:
-1. hvad siger folk om - på parti
-2. ingenn navn på h1
-*/
+ini_set( 'display-errors', true );
+require_once( 'util.php' );
 ?>
 <!doctype html>
 <html lang="da">
 <head>
 	<meta charset="utf-8">
 	<title>Politker Tweets</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="shortcut icon" href="images/twitter-orange.png">
 	<!--Boostrap-->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -62,14 +52,9 @@ errors:
 		<!-- Search input END -->
 		<br>
 		<!-- Filter by party -->
-		<div class="row text-center">
-			<div class="col-12">
-				<h1>Følg med i den danske politiske debat</h1>
-			</div>
-		</div>
-		<div class="row text-center">
-			<div class="col-12">
-				<p>Søg på en politiker, eller tryk på et parti for at se partiets politikers seneste tweets</p>
+		<div class="row col-md-12 d-flex justify-content-center">
+			<div>
+				<p>Tryk på parti for at se partiets politikers seneste tweets</p>
 			</div>
 		</div>
 		<div class="col-md-12 text-center">
@@ -82,7 +67,6 @@ errors:
 		<!-- Filter by party END -->
 		<!-- Vis seneste tweets for en enkelt bruger -->
 		<div class="row firstsection">
-		
 			<div class="row col-md-10 col-sm-12 justify-content-center mt-5 mb-5">
 				<?php
 				require_once( 'TwitterAPIExchange.php' );
@@ -113,8 +97,7 @@ errors:
 				$tweetlist = json_decode( $timeline );
 
 				//print_r($timeline);
-				?>
-				<?php
+
 				foreach ( $tweetlist as $tweet ) {
 					$hashtagstring = '';
 					if ( is_array( $tweet->entities->hashtags ) ) {
@@ -162,15 +145,6 @@ errors:
 		</div>
 		*/?>
 		<br>
-		<div class="row mt-5">
-			<h4 class="text-white col-12">
-				<?php if(isset($twitteruser)){
-					echo "Hvad siger folk om " . $tweet->user->name;
-				} else {
-					echo "Søg på en politiker for at se hvad folk siger om dem!";
-				} ?>
-			</h4>
-		</div>
 		<div class="row col-md-10 col-sm-12 justify-content-center mt-5 mb-5">
 			<?php
 			$hashtagSearch = filter_input( INPUT_GET, 'search' ); //variable for the searh function
@@ -196,7 +170,6 @@ errors:
 					$hashtagstring .= '#' . ( $htag->text ) . ' ';
 				}
 				?>
-				
 			<div class="col-md-6 col-sm-12">
 				<div class="card mb-3 searchHashtag">
 					<div class="card-header">

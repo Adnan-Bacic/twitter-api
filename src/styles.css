@@ -126,3 +126,8 @@ html{
 #footertext {
 	color: #FFA500;
 }
+@media screen and (min-width: 1200px) {
+	.marginLeft{
+		margin-left: 10px;
+	}
+}
